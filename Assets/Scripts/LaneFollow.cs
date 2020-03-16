@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[ExecuteInEditMode]
+[ExecuteInEditMode]
 public class LaneFollow : MonoBehaviour
 {
     //public GamePlayController m_GameController = null;
     public GameObject m_InnerLane;
     
     public GameObject m_OuterLane;
- 
+
+    // looks no further than m_MaxLookRange
+    public float m_MaxRange = 15.0f;
+
     private bool m_IsRacing = true;
  
     // true is this is an AI vehicle, else is player controlled
@@ -17,7 +20,9 @@ public class LaneFollow : MonoBehaviour
     
     // vehicle speed (m/s)
     public float m_Speed = 10f;
-    
+
+    public float m_OrientationSmoothTimeSec = 0.05f;
+
     // true if starting on inner, else on outer
     public bool m_IsStartOnInner = true;
  
@@ -116,8 +121,7 @@ public class LaneFollow : MonoBehaviour
         // loop through all points looking for closest one in front of vehicle
         
         // return nearest point and the angle between vehicle and point (degrees)
-        
-        const float maxRange = 25;
+
         Vector3 nearestPoint = Vector3.zero;
            
         angleBetweenDeg = 0f;
@@ -133,18 +137,19 @@ public class LaneFollow : MonoBehaviour
             
                 float dist = (child.position - transform.position).magnitude;
                 
-                if (dist < maxRange) {
+                if (dist < m_MaxRange) {
                 
                     Vector3 dirV = (child.position - transform.position).normalized;
                     float angleBetweenRad = Mathf.Acos(Vector3.Dot(dirV, vehicleForward));
-                    
+
                     if (Mathf.Abs(angleBetweenDeg) <= 80f) {
-                        
-                        if (angleBetweenRad <= minAngleRad) {
+
+                        if (Mathf.Abs(angleBetweenRad) <= minAngleRad) {
                             minAngleRad = angleBetweenRad;
                             sign = Vector3.Cross(dirV, vehicleForward).y;
                             nearestPoint = child.position;
-                        }     
+                        }
+
                     }
                 }           
             }
@@ -181,10 +186,17 @@ public class LaneFollow : MonoBehaviour
                 Vector3 euler = transform.localEulerAngles;
                 // smooth orientation            
                 euler.y = Mathf.SmoothDamp(
-                    euler.y, euler.y - angleBetweenDeg, ref m_SmoothingAngleVelocity, 0.1f);
-                //transform.localEulerAngles = euler;     
+                    euler.y, euler.y - angleBetweenDeg,
+                    ref m_SmoothingAngleVelocity,
+                    m_OrientationSmoothTimeSec);
+
+#if false  
+                transform.localEulerAngles = euler;
+#else
+
                 m_RigidBody.rotation = Quaternion.Euler(euler);
-                                      
+#endif
+
                 // move vehicle towards the point
                 Vector3 dPos = transform.forward * Time.deltaTime * m_Speed;  
                 m_RigidBody.position += dPos;
