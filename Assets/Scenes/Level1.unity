@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 161419028}
   - component: {fileID: 161419027}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Bike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -620,13 +620,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161419025}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.49991274, y: 0.50008726, z: 0.49991274, w: 0.50008726}
   m_LocalPosition: {x: -0, y: 1.8, z: 0}
   m_LocalScale: {x: 16.03927, y: 16.03927, z: 16.03927}
   m_Children: []
   m_Father: {fileID: 1644924946}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 90, z: 0}
 --- !u!23 &161419027
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1799,6 +1799,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 477523118}
+  - component: {fileID: 477523120}
+  - component: {fileID: 477523119}
+  - component: {fileID: 477523121}
   m_Layer: 0
   m_Name: GreenRacer1
   m_TagString: Untagged
@@ -1813,7 +1816,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477523117}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 97.98, y: 3714, z: 142.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1821,7 +1824,65 @@ Transform:
   - {fileID: 1917060096}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!65 &477523119
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477523117}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.7, z: 4.97}
+  m_Center: {x: 0, y: 0.45, z: 0}
+--- !u!54 &477523120
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477523117}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &477523121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477523117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2296cf502d7ae4d2bb00d17ba0b70c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Lanes:
+  - {fileID: 2109367147}
+  - {fileID: 1334196162}
+  - {fileID: 938362310}
+  m_MaxRange: 13
+  m_IsAi: 1
+  m_Speed: 12
+  m_OrientationSmoothTimeSec: 0.01
+  m_CurrentLane: {fileID: 938362310}
+  m_IsAIPasser: 0
+  m_IsAiBully: 0
+  m_VehicleToBully: {fileID: 0}
+  m_BullyBlockDistance: 25
+  m_IsShowDebugLines: 1
+  m_BlockVehicleWaitTimeSec: 1.5
+  m_RaceNumLaps: 6
+  m_WaitTillNextTriggerSec: 10
 --- !u!1 &483416925
 GameObject:
   m_ObjectHideFlags: 0
@@ -3570,7 +3631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938362311}
   m_Layer: 0
-  m_Name: BlueLanes
+  m_Name: RightLanes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3611,7 +3672,7 @@ Transform:
   - {fileID: 1009167821}
   - {fileID: 822351727}
   m_Father: {fileID: 1382949584}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1009167820
 GameObject:
@@ -4413,7 +4474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1334196163}
   m_Layer: 0
-  m_Name: PinkLanes
+  m_Name: MiddleLanes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4454,7 +4515,7 @@ Transform:
   - {fileID: 2111505537}
   - {fileID: 1458250162}
   m_Father: {fileID: 1382949584}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1370462957
 GameObject:
@@ -4641,9 +4702,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2109367148}
   - {fileID: 1334196163}
   - {fileID: 938362311}
-  - {fileID: 2109367148}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4972,6 +5033,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1644924946}
+  - component: {fileID: 1644924948}
+  - component: {fileID: 1644924947}
+  - component: {fileID: 1644924949}
   m_Layer: 0
   m_Name: BlueRacer 1
   m_TagString: Untagged
@@ -4986,7 +5050,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644924945}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 106.37, y: 3714, z: 142.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4994,7 +5058,65 @@ Transform:
   - {fileID: 2025394958}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &1644924947
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644924945}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.7, z: 4.97}
+  m_Center: {x: 0, y: 0.45, z: 0}
+--- !u!54 &1644924948
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644924945}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1644924949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644924945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2296cf502d7ae4d2bb00d17ba0b70c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Lanes:
+  - {fileID: 2109367147}
+  - {fileID: 1334196162}
+  - {fileID: 938362310}
+  m_MaxRange: 13
+  m_IsAi: 1
+  m_Speed: 10
+  m_OrientationSmoothTimeSec: 0.01
+  m_CurrentLane: {fileID: 2109367147}
+  m_IsAIPasser: 0
+  m_IsAiBully: 1
+  m_VehicleToBully: {fileID: 4523504331039236070}
+  m_BullyBlockDistance: 25
+  m_IsShowDebugLines: 1
+  m_BlockVehicleWaitTimeSec: 1.5
+  m_RaceNumLaps: 6
+  m_WaitTillNextTriggerSec: 10
 --- !u!1 &1670942316
 GameObject:
   m_ObjectHideFlags: 0
@@ -5560,7 +5682,7 @@ GameObject:
   - component: {fileID: 1917060098}
   - component: {fileID: 1917060097}
   m_Layer: 0
-  m_Name: Cube.001
+  m_Name: Rider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5573,13 +5695,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917060095}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.49991274, y: 0.50008726, z: 0.49991274, w: 0.50008726}
   m_LocalPosition: {x: -0, y: 6.6209846, z: 0}
   m_LocalScale: {x: 13.505983, y: 13.505983, z: 13.505983}
   m_Children: []
   m_Father: {fileID: 477523118}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 90, z: 0}
 --- !u!23 &1917060097
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5727,7 +5849,7 @@ GameObject:
   - component: {fileID: 1926148943}
   - component: {fileID: 1926148942}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Bike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5740,13 +5862,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926148940}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.49991274, y: 0.50008726, z: 0.49991274, w: 0.50008726}
   m_LocalPosition: {x: -0, y: 1.8, z: 0}
   m_LocalScale: {x: 16.03927, y: 16.03927, z: 16.03927}
   m_Children: []
   m_Father: {fileID: 477523118}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 90, z: 0}
 --- !u!23 &1926148942
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5812,7 +5934,7 @@ GameObject:
   - component: {fileID: 2025394960}
   - component: {fileID: 2025394959}
   m_Layer: 0
-  m_Name: Cube.001
+  m_Name: Rider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5825,13 +5947,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025394957}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.49991274, y: 0.50008726, z: 0.49991274, w: 0.50008726}
   m_LocalPosition: {x: -0, y: 6.6209846, z: 0}
   m_LocalScale: {x: 13.505983, y: 13.505983, z: 13.505983}
   m_Children: []
   m_Father: {fileID: 1644924946}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 90, z: 0}
 --- !u!23 &2025394959
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6056,7 +6178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2109367148}
   m_Layer: 0
-  m_Name: RedLanes
+  m_Name: LeftLanes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6097,7 +6219,7 @@ Transform:
   - {fileID: 818111519}
   - {fileID: 1676266331}
   m_Father: {fileID: 1382949584}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2111505536
 GameObject:
@@ -6265,7 +6387,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4523504331039236068}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 102.11, y: 3714.49, z: 142.49}
+  m_LocalPosition: {x: 102.11, y: 3714, z: 142.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2624099906790184345}
@@ -6604,9 +6726,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Lanes:
+  - {fileID: 2109367147}
   - {fileID: 1334196162}
   - {fileID: 938362310}
-  - {fileID: 0}
   m_MaxRange: 13
   m_IsAi: 0
   m_Speed: 10
