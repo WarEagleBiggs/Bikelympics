@@ -5,10 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class LaneFollow : MonoBehaviour
 {
-    //public GamePlayController m_GameController = null;
-    public GameObject m_InnerLane;
-    
-    public GameObject m_OuterLane;
+    public GameObject[] m_Lanes;
 
     // looks no further than m_MaxLookRange
     public float m_MaxRange = 15.0f;
@@ -22,14 +19,11 @@ public class LaneFollow : MonoBehaviour
     public float m_Speed = 10f;
 
     public float m_OrientationSmoothTimeSec = 0.05f;
-
-    // true if starting on inner, else on outer
-    public bool m_IsStartOnInner = true;
  
     private float m_SmoothingAngleVelocity;
 
     // an object with children as a points to follow
-    private GameObject m_CurrentLane;
+    public GameObject m_CurrentLane;
     
     // true if this AI is a lane changing passer
     public bool m_IsAIPasser = false;
@@ -90,7 +84,7 @@ public class LaneFollow : MonoBehaviour
     }
 
     private void Start()
-    {     
+    {
         m_RigidBody = GetComponent<Rigidbody>();  
         
         m_StartPos = transform.position;
@@ -107,8 +101,9 @@ public class LaneFollow : MonoBehaviour
     {
         if (m_IsShowDebugLines) {
 
-            DrawLaneLines(m_OuterLane);
-            DrawLaneLines(m_InnerLane);
+            foreach (GameObject obj in m_Lanes) {
+                DrawLaneLines(obj);
+            }
        
             // red line out the front of vehicle
             Gizmos.color = new Color(1,0,0);        
@@ -263,13 +258,6 @@ public class LaneFollow : MonoBehaviour
         if (m_RigidBody != null) {
             m_RigidBody.isKinematic = false;
         }
-
-        // initially set current lane
-        if (m_IsStartOnInner) {
-            m_CurrentLane = m_InnerLane;
-        } else {
-            m_CurrentLane = m_OuterLane;
-        }
     }
 
     private void Update()
@@ -295,14 +283,14 @@ public class LaneFollow : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (m_IsAi && m_IsAIPasser) {
-            // change lanes         
-            if (m_CurrentLane == m_InnerLane) {
-                m_CurrentLane = m_OuterLane;
-            } else {
-                m_CurrentLane = m_InnerLane;
-            }    
-         }    
+        //if (m_IsAi && m_IsAIPasser) {
+        //    // change lanes         
+        //    if (m_CurrentLane == m_InnerLane) {
+        //        m_CurrentLane = m_OuterLane;
+        //    } else {
+        //        m_CurrentLane = m_InnerLane;
+        //    }    
+        // }    
     }
 
     void AiControl()
@@ -333,13 +321,32 @@ public class LaneFollow : MonoBehaviour
     void PlayerControl()
     {
         // --- player controls vehicle ---
-        
+
         if (Input.GetKeyDown(KeyCode.A)) {
-            // set lane to inner
-            m_CurrentLane = m_InnerLane;
+            // go left
+            GameObject prev = null;
+            foreach (GameObject obj in m_Lanes) {
+                if (m_CurrentLane == obj) {
+                    if (prev != null) {
+                        m_CurrentLane = prev;
+                    }
+                } else {
+                    prev = obj;
+                }
+            }
         } else if (Input.GetKeyDown(KeyCode.D)) {
-            // set lane to outer
-            m_CurrentLane = m_OuterLane;
+            // go right
+            bool isPrevCurrent = false;
+            foreach (GameObject obj in m_Lanes) {
+                if (m_CurrentLane == obj) {
+                    isPrevCurrent = true;
+                } else {
+                    if (isPrevCurrent) {
+                        m_CurrentLane = obj;
+                        break;
+                    }
+                }
+            }
         }
     }
 
